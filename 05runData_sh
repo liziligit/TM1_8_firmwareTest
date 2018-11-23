@@ -1,0 +1,9 @@
+<NotepadPlus>
+    <Session activeView="0">
+        <mainView activeIndex="1">
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="71037" startPos="549" endPos="549" selMode="0" lang="Shell" encoding="-1" filename="M:\TM1_8_firmwareTest\script_bm\runData.sh" backupFilePath="" originalFileLastModifTimestamp="1479393526" mapFirstVisibleDisplayLine="0" mapFirstVisibleDocLine="0" mapLastVisibleDocLine="57" mapNbLine="57" mapHigherPos="0" mapWidth="321" mapHeight="228" mapKByteInDoc="0" mapWrapIndentMode="1" mapIsWrap="yes" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="71037" startPos="0" endPos="0" selMode="0" lang="C" encoding="-1" filename="M:\TM1_8_firmwareTest\daq\realTime.c" backupFilePath="" originalFileLastModifTimestamp="1495166006" mapFirstVisibleDisplayLine="0" mapFirstVisibleDocLine="0" mapLastVisibleDocLine="57" mapNbLine="57" mapHigherPos="0" mapWidth="316" mapHeight="228" mapKByteInDoc="3" mapWrapIndentMode="1" mapIsWrap="yes" />
+        </mainView>
+        <subView activeIndex="0" />
+    </Session>
+</NotepadPlus>

@@ -1,0 +1,2 @@
+1.  针对ip尾号=15的板子调试。 因为由ip尾号=15的板子发出start和fifo清空信号。 ./daq/tcp.c, mytcp.IP="192.168.2.15";
+2.  ./daq/realTime.c和./daq/clib.h中，去掉了tcp-server的部分，以及online分析的部分   

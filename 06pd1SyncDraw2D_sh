@@ -1,0 +1,9 @@
+<NotepadPlus>
+    <Session activeView="0">
+        <mainView activeIndex="0">
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="71037" startPos="573" endPos="587" selMode="0" lang="Shell" encoding="-1" filename="M:\TM1_8_firmwareTest\script_bm\pd1SyncDraw2D.sh" backupFilePath="" originalFileLastModifTimestamp="1479698744" mapFirstVisibleDisplayLine="-1" mapFirstVisibleDocLine="-1" mapLastVisibleDocLine="-1" mapNbLine="-1" mapHigherPos="-1" mapWidth="-1" mapHeight="-1" mapKByteInDoc="11904" mapWrapIndentMode="-1" mapIsWrap="no" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="71037" startPos="0" endPos="0" selMode="0" lang="C++" encoding="-1" filename="M:\TM1_8_firmwareTest\topmetal1X8\pd1_syncDraw2D.cpp" backupFilePath="" originalFileLastModifTimestamp="1481532932" mapFirstVisibleDisplayLine="0" mapFirstVisibleDocLine="0" mapLastVisibleDocLine="57" mapNbLine="57" mapHigherPos="0" mapWidth="316" mapHeight="228" mapKByteInDoc="1" mapWrapIndentMode="1" mapIsWrap="yes" />
+        </mainView>
+        <subView activeIndex="0" />
+    </Session>
+</NotepadPlus>
