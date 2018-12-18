@@ -10,7 +10,7 @@
 #include <TSystem.h>
 #include "rootlib.h"
 
-int pede(char *path,char *InName,int dataID){
+int pede(const char *path,const char *InName,int dataID){
 	char Input[200];
 	char Output[200];
 	sprintf(Input,"%s/%s%d.pd1",path,InName,dataID);

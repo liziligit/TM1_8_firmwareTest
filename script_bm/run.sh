@@ -4,8 +4,9 @@ sleep 1
 sleep 1
 ./debugTm2-.sh
 sleep 1
-./pede.sh 1
+./pede.sh 7
 sleep 1
-./runData.sh 1 2 s
+./runData.sh 500 501 s
 sleep 1 
-./pd1SyncDraw2D.sh 1 1 -10 10 1
+./pd1SyncDraw2D.sh 500 7 -10 10 1
+

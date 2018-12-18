@@ -15,7 +15,8 @@
 #include <sys/stat.h>
 #include <math.h>
 #include<time.h>
-
+#include <unistd.h> 
+//for usleep(ms)
 
 #include <TFile.h>
 #include <TTree.h>
@@ -1196,9 +1197,9 @@ void draw(int start=0,int nf=1){
 
 void fftDraw(){
 	TFile *f=new TFile("fftAna.root","recreate");
-	fft->photo("x","ma","frma");
-	fft->photo("fr","ps","frps");
-	fftb->photo("fr","ma","frmaBack");
+	fft->photo((char*)"x",(char*)"ma",(char*)"frma");
+	fft->photo((char*)"fr",(char*)"ps",(char*)"frps");
+	fftb->photo((char*)"fr",(char*)"ma",(char*)"frmaBack");
 	f->Write();
 	f->Close();
 }
@@ -8373,10 +8374,10 @@ void drawFrameUpdate(int frameStart,int frameStop,char *pedeFile,TCanvas *ca_adc
 					hAdcMap[iC]->Draw("COLZ");
 					hAdcMap[iC]->SetMaximum(60);
 					hAdcMap[iC]->SetMinimum(-20);
-					sleep(0.1);
+					usleep(100);
 					ca_adcMap->cd(iC+1)->Modified();
 					ca_adcMap->cd(iC+1)->Update();
-					sleep(0.1);
+					usleep(100);
 					ca_adcMap->cd(pd1.adcCha()+iC+1);
 					hist1D[iC]->Draw();
 					ca_adcMap->cd(pd1.adcCha()+iC+1)->Modified();
@@ -8505,10 +8506,10 @@ void drawFrameUpdate2D(int frameStart,int frameStop,char *pedeFile,TCanvas *ca_a
 					hAdcMap[iC]->Draw("COLZ");
 					hAdcMap[iC]->SetMaximum(60);
 					hAdcMap[iC]->SetMinimum(-20);
-					sleep(0.1);
+					usleep(100);
 					ca_adcMap->cd(iC+1)->Modified();
 					ca_adcMap->cd(iC+1)->Update();
-					sleep(0.1);
+					usleep(100);
 					// ca_adcMap->cd(pd1.adcCha()+iC+1);
 					// hist1D[iC]->Draw();
 					// ca_adcMap->cd(pd1.adcCha()+iC+1)->Modified();
@@ -8642,10 +8643,10 @@ void drawAllFrameUpdate2D(char *pedeFile,TCanvas *ca_adcMap){
 					hAdcMap[iC]->Draw("COLZ");
 					hAdcMap[iC]->SetMaximum(50);
 					hAdcMap[iC]->SetMinimum(-20);
-					sleep(0.1);
+					usleep(100);
 					ca_adcMap->cd(iC+1)->Modified();
 					ca_adcMap->cd(iC+1)->Update();
-					sleep(0.1);
+					usleep(100);
 					// ca_adcMap->cd(pd1.adcCha()+iC+1);
 					// hist1D[iC]->Draw();
 					// ca_adcMap->cd(pd1.adcCha()+iC+1)->Modified();
@@ -10031,9 +10032,11 @@ class pd1SyncDebug{
 						}
 						y/=(double)pd1IP[i].samPerPix();
 						y-=pedeIP[i].meanPed[ich*pd1IP[i].nPix()+ipixel];                    
-		            			histAdc->SetBinContent( iframe-frameStart+1, y );							}	
+		            			histAdc->SetBinContent( iframe-frameStart+1, y );		
+					}	
 				}
-			}							}	
+			}					
+		}	
 
 
 		TH2D *hAdcMap[nIP*nTopMetalChips];
@@ -10059,7 +10062,8 @@ class pd1SyncDebug{
 
 		for(int iframe=frameStart;iframe<=frameStop;iframe++) {
 	//		cout << "TopMetal II ADC Map at Frame " << iframe << endl;
-			for(int i=0; i<nIP; i++){  				channelIdx = 0;  				                
+			for(int i=0; i<nIP; i++){  
+				channelIdx = 0;  				                
 				for( int pixelId= i*nTopMetalChips*nPixelsOnChip; pixelId<(i+1)*nTopMetalChips*nPixelsOnChip; pixelId++ ){ //loop 8*5184 channels
 					channelIdx = pixelId-i*nTopMetalChips*nPixelsOnChip;
 					int entries = mHistAdcVec[pixelId]->GetEntries();
@@ -10070,13 +10074,15 @@ class pd1SyncDebug{
                 
 				        rawAdc= mHistAdcVec[pixelId]->GetBinContent(iframe-frameStart+1);
                                         hAdcMap[iChip+i*nTopMetalChips]->SetBinContent(iPixel/72,iPixel%72, rawAdc);               
-				}		 
+				}		 
+
 				for(int ich = 0; ich<pd1IP[i].adcCha(); ich++){
 				        if(ich<pd1IP[i].adcCha()/2){
 				            ca_adcMap->cd(ich+1+pd1IP[i].adcCha()/2+i*nTopMetalChips);
 				            hAdcMap[ich+i*nTopMetalChips]->SetStats(kFALSE);                    			
 				            hAdcMap[ich+i*nTopMetalChips]->Draw("colz");
-				            hAdcMap[ich+i*nTopMetalChips]->SetMaximum(upLimitPixel);				            hAdcMap[ich+i*nTopMetalChips]->SetMinimum(lowLimitPixel);                    
+				            hAdcMap[ich+i*nTopMetalChips]->SetMaximum(upLimitPixel);
+				            hAdcMap[ich+i*nTopMetalChips]->SetMinimum(lowLimitPixel);                    
 				            ca_adcMap->cd(ich+1+pd1IP[i].adcCha()/2+i*nTopMetalChips)->Modified();
 				            ca_adcMap->cd(ich+1+pd1IP[i].adcCha()/2+i*nTopMetalChips)->Update();
 				        }else{
@@ -10084,7 +10090,8 @@ class pd1SyncDebug{
 				            hAdcMap[ich+i*nTopMetalChips]->SetStats(kFALSE);                    			
 				            hAdcMap[ich+i*nTopMetalChips]->Draw("colz");
 				            hAdcMap[ich+i*nTopMetalChips]->SetMaximum(upLimitPixel);
-				            hAdcMap[ich+i*nTopMetalChips]->SetMinimum(lowLimitPixel);                    				            ca_adcMap->cd(pd1IP[i].adcCha()-ich+i*nTopMetalChips)->Modified();
+				            hAdcMap[ich+i*nTopMetalChips]->SetMinimum(lowLimitPixel);                    
+				            ca_adcMap->cd(pd1IP[i].adcCha()-ich+i*nTopMetalChips)->Modified();
 				            ca_adcMap->cd(pd1IP[i].adcCha()-ich+i*nTopMetalChips)->Update();                            
 				        }		                                                                  
 		            	}
